@@ -1,8 +1,11 @@
 #frozen_string_literal: true
 
 class PaymentsController < ApplicationController
-  def index
-    @payment = Payment.new(payment_params)
+  def new
+    @payment = Payment.new(new_payment_params)
+    respond_to do |format|
+      format.html {}
+    end
   end
 
   def create
@@ -11,7 +14,7 @@ class PaymentsController < ApplicationController
 
   private
 
-  def payment_params
+  def new_payment_params
     return { role: "Admin" } unless params[:payment]
 
     params[:payment].permit(:role, :first_name, :last_name, :contact_number, :department)

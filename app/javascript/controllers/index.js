@@ -4,5 +4,6 @@
 
 import { application } from "./application"
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import DynamicFormController from "./dynamic_form_controller"
+
+application.register("dynamic-form", DynamicFormController)

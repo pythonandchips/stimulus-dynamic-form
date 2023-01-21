@@ -1,0 +1,65 @@
+<h1>Payments#index</h1>
+
+<%= turbo_frame_tag(
+  "payment-form",
+  data: {
+    controller: "dynamic-form",
+  }
+) do %>
+  <%= form_with(
+    model: @payment,
+    class: "box",
+    data: { dynamic_form_target: "form" }
+  ) do |form| %>
+    <%= form.button(
+      "update form",
+      class: "is-hidden",
+      formaction: new_payments_path,
+      data: { dynamic_form_target: "submit" }
+    ) %>
+    <div class="field">
+      <%= form.label :role %>
+      <div class="control">
+        <div class="select">
+          <%= form.select(
+            :role,
+            ["Admin", "User", "Read-Only"],
+            {},
+            { data: { action: "input->dynamic-form#update" } }
+          ) %>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <%= form.label :first_name %>
+      <div class="control">
+        <%= form.text_field :first_name, class: "input" %>
+      </div>
+    </div>
+    <div class="field">
+      <%= form.label :last_name %>
+      <div class="control">
+        <%= form.text_field :last_name, class: "input" %>
+      </div>
+    </div>
+    <div class="field">
+      <%= form.label :contact_number %>
+      <div class="control">
+        <%= form.text_field :contact_number, class: "input" %>
+      </div>
+    </div>
+    <% if @payment.role == "Admin" %>
+      <div class="field">
+        <%= form.label :department %>
+        <div class="control">
+          <%= form.text_field :department, class: "input" %>
+        </div>
+      </div>
+    <% end %>
+    <div class="field is-grouped">
+      <div class="control">
+        <%= form.button "submit", class: "button is-link" %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
