@@ -5,5 +5,7 @@
 import { application } from "./application"
 
 import DynamicFormController from "./dynamic_form_controller"
+import StripeController from "./stripe_controller"
 
 application.register("dynamic-form", DynamicFormController)
+application.register("stripe", StripeController)

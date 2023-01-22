@@ -3,5 +3,5 @@
 class Payment
   include ActiveModel::Model
 
-  attr_accessor :role, :first_name, :last_name, :contact_number, :department
+  attr_accessor :role, :first_name, :last_name, :contact_number, :approved, :department
 end

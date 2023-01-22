@@ -15,8 +15,7 @@ class PaymentsController < ApplicationController
   private
 
   def new_payment_params
-    return { role: "Admin" } unless params[:payment]
-
-    params[:payment].permit(:role, :first_name, :last_name, :contact_number, :department)
+    params.fetch(:payment, { role: "Admin"})
+      .permit(:role, :first_name, :last_name, :contact_number, :approved, :department)
   end
 end
